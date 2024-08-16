@@ -1,3 +1,4 @@
+// src/app/api/suggest-messages/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -10,7 +11,7 @@ if (!apiKey) {
 }
 
 // Initialize the GoogleGenerativeAI instance
-export const genAI = new GoogleGenerativeAI(apiKey);
+const genAI = new GoogleGenerativeAI(apiKey);
 
 async function run(): Promise<string> {
     try {
@@ -47,6 +48,7 @@ async function run(): Promise<string> {
     }
 }
 
+// Handle POST requests
 export async function POST(req: NextRequest) {
     try {
         // Fetch suggestions from the AI
