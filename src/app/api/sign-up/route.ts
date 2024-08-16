@@ -85,9 +85,12 @@ export async function POST(request: Request) {
             await newUser.save();
 
         }
+        console.log("hii  in sign-up")
 
         //send verification email
         const emailResponse = await sendVerificationEmail(email, username, verifyCode);
+        console.log("udhhf")
+        console.log(emailResponse)
 
         if (!emailResponse.success) {
             return Response.json(

@@ -1,5 +1,5 @@
 //done
-
+import * as React from 'react';
 import {
     Html,
     Head,
@@ -18,6 +18,7 @@ interface VerificationEmailProps {
 }
 
 export default function VerificationEmail({ username, otp }: VerificationEmailProps) {
+    console.log("hii kisna")
     return (
         <Html lang="en" dir="ltr">
             <Head>
