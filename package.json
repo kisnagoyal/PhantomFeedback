@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/next": "^8.0.7",
     "@types/node": "20.14.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
