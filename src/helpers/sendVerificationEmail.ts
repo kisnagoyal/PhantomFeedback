@@ -41,9 +41,10 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'your-sendgrid-api-key');
 
 export async function sendVerificationEmail(email: string, username: string, verifyCode: string): Promise<ApiResponse> {
     try {
+        
         // Generate the HTML content for the email
         const emailHtml = generateVerificationEmailHtml(username, verifyCode);
-
+        
         // Create the message to send via SendGrid
         const msg = {
             to: email,
@@ -51,10 +52,10 @@ export async function sendVerificationEmail(email: string, username: string, ver
             subject: 'PhantomFeedback | Verify your email',
             html: emailHtml,  // Pass the generated HTML string
         };
-
+        
         // Send the email via SendGrid
         await sgMail.send(msg);
-
+        console.log("hiii...dhd")
         console.log("Email sent successfully", email);
         return {
             success: true,
