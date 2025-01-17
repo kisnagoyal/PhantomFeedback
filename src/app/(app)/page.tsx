@@ -39,9 +39,9 @@ export default function Home() {
             {messages.map((message, index) => (
               <CarouselItem key={index} className="p-4">
                 <Card>
-                  <CardHeader>
+                  {/* <CardHeader>
                     <CardTitle>{message.title}</CardTitle>
-                  </CardHeader>
+                  </CardHeader> */}
                   <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
                     <Mail className="flex-shrink-0" />
                     <div>
