@@ -30,39 +30,42 @@
 //     }
 // }
 
-import { sendgrid } from "@/lib/sendgrid"; // Import SendGrid setup
+
+const sgMail = require('@sendgrid/mail');
 import VerificationEmail from "../../emails/VerificationEmail";
 import { ApiResponse } from "@/types/ApiResponse";
-import ReactDOMServer from 'react-dom/server'; // Import ReactDOMServer
 
-// Move the rendering of the email to the server-side function
+// Set SendGrid API Key (Ensure it's stored securely in environment variables)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'your-sendgrid-api-key');
+
 export async function sendVerificationEmail(email: string, username: string, verifyCode: string): Promise<ApiResponse> {
     try {
-        console.log(`Sending email to: ${email}`);
+        console.log(email);
 
-        // Use ReactDOMServer to render the email body to static HTML
-        const htmlContent = ReactDOMServer.renderToStaticMarkup(VerificationEmail({ username, otp: verifyCode }));
+        // Render the email content using VerificationEmail
+        const emailHtml = VerificationEmail({ username, otp: verifyCode });
 
-        // Send email using SendGrid
-        const response = await sendgrid.send({
-            to: email, // Recipient's email
-            from: 'your-email@example.com', // Replace with your verified SendGrid sender email
+        // Create the message to send via SendGrid
+        const msg = {
+            to: email,
+            from: 'phantom2Feedback@gmail.com',  // Replace with your verified sender email
             subject: 'PhantomFeedback | Verify your email',
-            html: htmlContent, // Send the email body as HTML
-        });
+            html: emailHtml,  // Email content rendered by VerificationEmail
+        };
 
-        console.log("SendGrid response:", response);
+        // Send the email via SendGrid
+        await sgMail.send(msg);
 
+        console.log("success", email);
         return {
             success: true,
-            message: 'Verification email sent',
+            message: 'Verification email sent'
         };
     } catch (emailError) {
         console.error('Error sending verification email', emailError);
-
         return {
             success: false,
-            message: 'Message not sent',
+            message: 'Message not sent'
         };
     }
 }
