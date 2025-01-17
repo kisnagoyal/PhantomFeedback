@@ -142,9 +142,9 @@ function SignUp() {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Email
-                                        <span style={{ color: 'gray', marginLeft: '8px' }}>
-                                            (use your personal email id)
-                                        </span>
+                                        {/* <span style={{ color: 'gray', marginLeft: '8px' }}> */}
+                                            {/* (use your personal email id) */}
+                                        {/* </span> */}
 
                                     </FormLabel>
                                     <FormControl>
