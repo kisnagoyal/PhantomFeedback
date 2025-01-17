@@ -60,7 +60,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="text-center p-4 md:p-6">
-        © 2024 PhantomFeedback. All rights reserved.
+        © 2025 PhantomFeedback. All rights reserved.
       </footer>
     </>
   );
