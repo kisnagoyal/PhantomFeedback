@@ -37,23 +37,24 @@ const VerifyAccount = () => {
     const onSubmit = async (data: z.infer<typeof verifySchema>) => {
         setIsSubmitting(true)
         try {
-            console.log("hii..1")
+            console.log("hii..,,,,1")
             
             const response = await axios.post(`/api/verify-code`, {
                 
                 username: params.username,
                 code: data.code
             })
-            
+                                    console.log("hii..2")
+
             
             toast({
                 title: "Success",
                 description: response.data.message
             })
+
             router.replace("/sign-in")
             setIsSubmitting(false)
         } catch (error) {
-            console.log("hii..2")
             // console.error("Error in sign up of user", error);
             const axiosError = error as AxiosError<ApiResponse>
 
@@ -73,7 +74,7 @@ const VerifyAccount = () => {
                     <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl mb-6">
                         Verify your Account
                     </h1>
-                    <p className="mb-4">Enter the verification code sent to your email</p>
+                    <p className="mb-4">Enjjkhihuter the verification code sent to your email</p>
                 </div>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

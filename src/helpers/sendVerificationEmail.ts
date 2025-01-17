@@ -30,45 +30,41 @@
 //     }
 // }
 
+// src/helpers/sendVerificationEmail.ts
 
-const sgMail = require('@sendgrid/mail');
-import VerificationEmail from "../../emails/VerificationEmail";
+import { generateVerificationEmailHtml } from '../emails/VerificationEmailTemplate';  // Correct path
+import sgMail from '@sendgrid/mail';
 import { ApiResponse } from "@/types/ApiResponse";
 
-// Set SendGrid API Key (Ensure it's stored securely in environment variables)
+// Set SendGrid API Key
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'your-sendgrid-api-key');
 
 export async function sendVerificationEmail(email: string, username: string, verifyCode: string): Promise<ApiResponse> {
     try {
-        console.log(email);
-
-        // Render the email content using VerificationEmail
-        const emailHtml = VerificationEmail({ username, otp: verifyCode });
+        // Generate the HTML content for the email
+        const emailHtml = generateVerificationEmailHtml(username, verifyCode);
 
         // Create the message to send via SendGrid
         const msg = {
             to: email,
-            from: 'phantom2Feedback@gmail.com',  // Replace with your verified sender email
+            from: 'phantom2Feedback@gmail.com',  // Ensure this is a verified sender email in SendGrid
             subject: 'PhantomFeedback | Verify your email',
-            html: emailHtml,  // Email content rendered by VerificationEmail
+            html: emailHtml,  // Pass the generated HTML string
         };
 
         // Send the email via SendGrid
         await sgMail.send(msg);
 
-        console.log("success", email);
+        console.log("Email sent successfully", email);
         return {
             success: true,
-            message: 'Verification email sent'
+            message: 'Verification email sent',
         };
     } catch (emailError) {
-        if (!process.env.SENDGRID_API_KEY) {
-            throw new Error("SENDGRID_API_KEY is not set in the environment variables");
-        }
         console.error('Error sending verification email', emailError);
         return {
             success: false,
-            message: 'Message not sent'
+            message: 'Message not sent',
         };
     }
 }
