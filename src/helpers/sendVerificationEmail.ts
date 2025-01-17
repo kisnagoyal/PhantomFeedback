@@ -62,6 +62,9 @@ export async function sendVerificationEmail(email: string, username: string, ver
             message: 'Verification email sent'
         };
     } catch (emailError) {
+        if (!process.env.SENDGRID_API_KEY) {
+            throw new Error("SENDGRID_API_KEY is not set in the environment variables");
+        }
         console.error('Error sending verification email', emailError);
         return {
             success: false,
