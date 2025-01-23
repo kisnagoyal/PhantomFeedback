@@ -61,13 +61,13 @@ function UserDashboard() {
             setIsSwitchLoading(false);
             try {
                 const response = await axios.get<ApiResponse>('/api/get-messages');
-                if (response.data.message === "No Message to Show") {
-                    console.log("hii")
-                    toast({
-                        title: "No Message to Show",
-                        variant: "default",
-                    });
-                }
+                // if (response.data.message === "No Message to Show") {
+                //     console.log("hii")
+                //     toast({
+                //         title: "No Message to Show",
+                //         variant: "default",
+                //     });
+                // }
                 setMessages(response.data.messages || []);
 
                 if (refresh) {
