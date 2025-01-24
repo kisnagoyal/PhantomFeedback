@@ -114,7 +114,7 @@
 //     }
 // }
 
-import { decryptMessage } from "@/lib/utils";
+import { decryptMessage } from "@/lib/crypto";
 import { getServerSession } from "next-auth";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";

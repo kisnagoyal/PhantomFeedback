@@ -72,7 +72,7 @@
 // }
 
 
-import { encryptMessage } from "@/lib/utils";
+import { encryptMessage } from "@/lib/crypto";
 import { Message } from "@/models/User";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
