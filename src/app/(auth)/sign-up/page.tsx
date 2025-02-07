@@ -104,7 +104,7 @@ function SignUp() {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Username</FormLabel>
+                                    <FormLabel>Username <div className="text-zinc-700" />(in lowercase)</FormLabel>
                                     <FormControl>
                                         <Input placeholder="username"
                                             {...field}
