@@ -1,6 +1,6 @@
 import Cryptr from "cryptr";  // Use "import" instead of "require"
 
-const secretKey: string = "myTotalySecretKey";  // Directly passing the secret key
+const secretKey: string = process.env.ENCRYPTION_KEY as string;  // Directly passing the secret key
 const cryptr = new Cryptr(secretKey);
 
 
