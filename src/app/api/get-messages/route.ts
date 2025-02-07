@@ -232,7 +232,7 @@ export async function GET(request: Request) {
             // Decrypt the message content
             const decryptedContent = crypto.m(msg.content, false); // Decrypt message content
 
-            
+
             return {
                 ...msg,
                 content: decryptedContent,
